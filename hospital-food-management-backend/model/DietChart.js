@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 
 const dietChartSchema = new mongoose.Schema(
   {
-    patient: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Patient",
-      required: [true, "Patient reference is required"],
+    patientName: {
+      type: String, // References the Patient collection
+      required: true,
     },
     meals: {
       morning: {

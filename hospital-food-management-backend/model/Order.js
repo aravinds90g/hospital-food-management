@@ -11,7 +11,10 @@ const deliverySchema = new mongoose.Schema(
       enum: ["Breakfast", "Lunch", "Dinner"],
       required: true,
     },
-    
+    foodName:{
+      type:String,
+      default:"water"
+    },
     roomNo: {
       type: String, // Array of strings for ingredients
       required: true,

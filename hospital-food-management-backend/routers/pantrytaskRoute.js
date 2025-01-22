@@ -15,7 +15,7 @@ const {
 router.post(
   "/pantry-tasks",
   authenticate,
-  authorize(["manager", "pantry"]),
+  authorize(["manager"]),
   assignPantryTasks
 ); 
 

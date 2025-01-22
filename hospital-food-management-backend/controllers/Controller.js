@@ -50,6 +50,38 @@ exports.login = async (req, res) => {
   }
 };
 
+
+exports.getDeliveryUser = async (req, res) =>{
+  const deliveryUser = await User.find({role:"delivery"})
+    res.status(200).json(deliveryUser);
+}
+
+exports.deleteDeliveryUser = async(req,res) =>{
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+    res.status(200).json({ message: "Delivery User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+exports.getPantryUser = async (req, res) => {
+  const pantryUser = await User.find({ role: "pantry" });
+  res.status(200).json(pantryUser);
+};
+
+
+exports.deletePantryUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+    res.status(200).json({ message: "Pantry User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // Get all patients
 exports.getPatients = async (req, res) => {
   try {
@@ -278,7 +310,8 @@ exports.getDashboardStats = async (req, res) => {
     // Example: Calculate stats (you can adjust as per requirements)
     const totalPatients = await Patient.countDocuments();
     const totalDeliveries = await Delivery.countDocuments();
-    const stats = { totalPatients, totalDeliveries };
+    const totalPantryTask = await PantryTask.countDocuments();
+    const stats = { totalPatients, totalDeliveries ,totalPantryTask };
     res.status(200).json(stats);
   } catch (err) {
     res.status(500).json({ error: err.message });

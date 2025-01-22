@@ -6,7 +6,8 @@ const patientRouter = require("./routers/patientRoute");
 const pantryRouter = require("./routers/pantrytaskRoute")
 const deliveryRouter = require("./routers/deliveryTaskRoute")
 const dietChartRouter = require("./routers/dietChartRouter")
-const dashboardRouter = require("./routers/dashBoard")
+const dashboardRouter = require("./routers/dashBoard");
+const deliveryAndPantryUser = require("./routers/pantryAndDeliveryUsers")
 const cors = require("cors");
 
 dotenv.config();
@@ -27,9 +28,12 @@ app.use("/api/v2", pantryRouter);
 
 app.use("/api/v3", deliveryRouter);
 
+app.use("/api/v4", dashboardRouter);
+
 app.use("/api/v5", dietChartRouter);
 
-app.use("/api/v4", dashboardRouter);
+app.use("/api/v6", deliveryAndPantryUser);
+
 
 
 

@@ -13,7 +13,7 @@ const patientSchema = new mongoose.Schema(
     allergies: {
       type: [String], // Array of strings to store multiple allergies
     },
-    roomNumber: {
+    roomNo: {
       type: String,
       required: [true, "Room number is required"],
     },
@@ -21,7 +21,7 @@ const patientSchema = new mongoose.Schema(
       type: String,
       required: [true, "Bed number is required"],
     },
-    floorNumber: {
+    floorNo: {
       type: String,
       required: [true, "Floor number is required"],
     },

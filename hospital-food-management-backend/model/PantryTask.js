@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const pantryTaskSchema = new mongoose.Schema(
   {
-    patientId: {
-      type: mongoose.Schema.Types.ObjectId,
+    patientName: {
+      type: String,
       ref: "Patient",
       required: true,
     },
@@ -12,35 +12,27 @@ const pantryTaskSchema = new mongoose.Schema(
       enum: ["Breakfast", "Lunch", "Dinner"],
       required: true,
     },
+    foodName: {
+      type: String,
+      required: true,
+      default:"water"
+    },
     ingredients: {
       type: [String],
-      required: true,
     },
     instructions: {
       type: String,
       default: "", // Instructions like "no salt", "low sugar", etc.
     },
-    assignedTo: {
-      type: mongoose.Schema.Types.ObjectId,
+    taskStatus: {
+      type: String,
+      enum: ["In Progress", "Completed"],
+      default: "In Progress",
+    },
+    taskAssignedTo: {
+      type: String,
       ref: "User",
       required: true,
-    },
-    status: {
-      type: String,
-      enum: ["Pending", "In Progress", "Completed"],
-      default: "Pending",
-    },
-    deliveryStatus: {
-      type: String,
-      enum: ["Pending", "Delivered"],
-      default: "Pending",
-    },
-    deliveryAssignedTo: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-    deliveryTime: {
-      type: Date,
     },
     createdAt: {
       type: Date,
